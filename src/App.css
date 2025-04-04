@@ -1,0 +1,42 @@
+.container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn.empleados {
+  background-color: #007bff;
+}
+
+.btn.empleados:hover {
+  background-color: #0056b3;
+}
+
+.btn.cuentas {
+  background-color: #28a745;
+}
+
+.btn.cuentas:hover {
+  background-color: #1e7e34;
+}
