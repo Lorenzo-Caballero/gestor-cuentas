@@ -59,7 +59,6 @@ export default function CuentasTable() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
-      
 
       obtenerCuentasYEmpleados();
       setEditandoId(null);
@@ -112,57 +111,56 @@ export default function CuentasTable() {
             </tr>
           </thead>
           {cuentas.map((cuenta) => {
-  const mostrandoSelect = editandoId === `asignar-${cuenta.id_cuenta}`;
+            const mostrandoSelect = editandoId === `asignar-${cuenta.id_cuenta}`;
 
-  return (
-    <tr key={cuenta.id_cuenta}>
-      <td>{cuenta.servicio}</td>
-      <td>{cuenta.titular}</td>
-      <td>{cuenta.cbu}</td>
-      <td>{cuenta.nombre_empleado}</td>
-      <td>
-        {mostrandoSelect ? (
-          <select
-            value={cuenta.id_empleado || ""}
-            onChange={async (e) => {
-              const nuevoId = e.target.value;
-              try {
-                await fetch(`https://gestor-accounts-production.up.railway.app/api/cuentas/${cuenta.id_cuenta}`, {
-                  method: "PUT",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ ...cuenta, id_empleado: nuevoId }),
-                });
-                obtenerCuentasYEmpleados();
-                setEditandoId(null);
-              } catch (error) {
-                console.error("Error al asignar empleado:", error);
-              }
-            }}
-            onBlur={() => setEditandoId(null)}
-          >
-            <option value="">Seleccionar empleado</option>
-            {empleados.map((emp) => (
-              <option key={emp.id} value={emp.id}>
-                {emp.nombre}
-              </option>
-            ))}
-          </select>
-        ) : (
-          <span
-            style={{ cursor: "pointer", color: "blue" }}
-            onClick={() => setEditandoId(`asignar-${cuenta.id_cuenta}`)}
-          >
-            Asignar a
-          </span>
-        )}
-      </td>
-      <td>
-        <button onClick={() => handleEditClick(cuenta)}>Editar</button>
-      </td>
-    </tr>
-  );
-})}
-
+            return (
+              <tr key={cuenta.id_cuenta}>
+                <td>{cuenta.servicio}</td>
+                <td>{cuenta.titular}</td>
+                <td>{cuenta.cbu}</td>
+                <td>{cuenta.nombre_empleado}</td>
+                <td>
+                  {mostrandoSelect ? (
+                    <select
+                      value={cuenta.id_empleado || ""}
+                      onChange={async (e) => {
+                        const nuevoId = e.target.value;
+                        try {
+                          await fetch(`https://gestor-accounts-production.up.railway.app/api/cuentas/${cuenta.id_cuenta}`, {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ ...cuenta, id_empleado: nuevoId }),
+                          });
+                          obtenerCuentasYEmpleados();
+                          setEditandoId(null);
+                        } catch (error) {
+                          console.error("Error al asignar empleado:", error);
+                        }
+                      }}
+                      onBlur={() => setEditandoId(null)}
+                    >
+                      <option value="">Seleccionar empleado</option>
+                      {empleados.map((emp) => (
+                        <option key={emp.id} value={emp.id}>
+                          {emp.nombre}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <span
+                      style={{ cursor: "pointer", color: "blue" }}
+                      onClick={() => setEditandoId(`asignar-${cuenta.id_cuenta}`)}
+                    >
+                      Asignar a
+                    </span>
+                  )}
+                </td>
+                <td>
+                  <button onClick={() => handleEditClick(cuenta)}>Editar</button>
+                </td>
+              </tr>
+            );
+          })}
         </table>
       </div>
 

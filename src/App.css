@@ -1,42 +1,92 @@
-.container {
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
+/* Estilo para la barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Los botones estarán en los extremos */
+  align-items: center;
+  background-color: #200b36; /* Fondo oscuro para la navbar */
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Espaciado entre los botones */
+.navbar .button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* Estilos comunes para los botones */
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+/* Efectos hover y active */
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de Empleados */
+.button-empleados {
+  background-color: #9b59b6; /* Violeta suave */
   color: white;
-  cursor: pointer;
-  transition: 0.3s;
+  border: 2px solid #9b59b6;
 }
 
-.btn.empleados {
-  background-color: #007bff;
+.button-empleados:hover {
+  background-color: #8e44ad;
 }
 
-.btn.empleados:hover {
-  background-color: #0056b3;
+/* Botón de Cuentas */
+.button-cuentas {
+  background-color: #6a0dad; /* Violeta oscuro */
+  color: white;
+  border: 2px solid #6a0dad;
 }
 
-.btn.cuentas {
-  background-color: #28a745;
+.button-cuentas:hover {
+  background-color: #8e44ad;
 }
 
-.btn.cuentas:hover {
-  background-color: #1e7e34;
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .button-container {
+    flex-direction: column; /* Pone los botones uno encima del otro en pantallas pequeñas */
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .button {
+    width: 100%; /* Los botones ocuparán todo el ancho disponible */
+    padding: 12px;
+    font-size: 14px;
+  }
 }

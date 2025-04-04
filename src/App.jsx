@@ -1,9 +1,8 @@
 import { useState } from "react";
 import EmpleadosTable from "./EmpleadosTable";
 import CuentasTable from "./CuentasTable";
-import { FaUser, FaCreditCard, FaPlus } from "react-icons/fa6";
-import CrearEmpleadoForm from "./CrearEmpleadoForm";
-import CrearCuentaForm from "./CrearCuentaForm";
+import { FaUser, FaCreditCard } from "react-icons/fa6";
+import './app.css';  // Asegúrate de importar tu archivo de CSS
 
 export default function App() {
   const [view, setView] = useState(null);
@@ -30,23 +29,25 @@ export default function App() {
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <div className="flex justify-center gap-4 mb-6">
-        <button
-          onClick={() => handleView("empleados")}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
-          <FaUser /> Empleados
-        </button>
-        <button
-          onClick={() => handleView("cuentas")}
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-        >
-          <FaCreditCard /> Cuentas
-        </button>
+      {/* Barra de navegación con los botones */}
+      <div className="navbar">
+        <div className="button-container">
+          <button
+            onClick={() => handleView("empleados")}
+            className="button button-empleados"
+          >
+            <FaUser /> Empleados
+          </button>
+          <button
+            onClick={() => handleView("cuentas")}
+            className="button button-cuentas"
+          >
+            <FaCreditCard /> Cuentas
+          </button>
+        </div>
       </div>
 
-      
-
+      {/* Mostrar las tablas según la vista seleccionada */}
       {view === "empleados" && <EmpleadosTable />}
       {view === "cuentas" && <CuentasTable />}
     </div>
